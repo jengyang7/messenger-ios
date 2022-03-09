@@ -6,5 +6,7 @@ target 'Messenger' do
   use_frameworks!
 
   # Pods for Messenger
+  
+  pod 'R.swift'
 
 end
