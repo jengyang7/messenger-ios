@@ -176,6 +176,10 @@ struct R: Rswift.Validatable {
           fileprivate init() {}
         }
 
+        struct uiWindowSceneSessionRoleExternalDisplay {
+          fileprivate init() {}
+        }
+
         fileprivate init() {}
       }
 
