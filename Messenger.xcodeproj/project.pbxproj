@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C358B1FB2C60DD5DFF639D2 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6843C784F4B3553D44E83A /* Pods_Messenger.framework */; };
+		8D7AE8C727DDDB5C00B3C681 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */; };
 		8D7FD7D727C2A9C6001C5647 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FD7D627C2A9C6001C5647 /* R.generated.swift */; };
 		8D7FD7D927C2ABE5001C5647 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FD7D827C2ABE5001C5647 /* Extensions.swift */; };
 		8DD0DAF8278611A800F113AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DAF7278611A800F113AD /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		5C6843C784F4B3553D44E83A /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D7FD7D627C2A9C6001C5647 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		8D7FD7D827C2ABE5001C5647 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8DD0DAF4278611A800F113AD /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 				8DD0DB0C2787456E00F113AD /* ViewModels */,
 				8DD0DB0B2787456900F113AD /* Resources */,
 				8DD0DB00278611AA00F113AD /* Assets.xcassets */,
+				8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */,
 				8DD0DB05278611AA00F113AD /* Info.plist */,
 				8D7FD7D627C2A9C6001C5647 /* R.generated.swift */,
 			);
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD0DB04278611AA00F113AD /* LaunchScreen.storyboard in Resources */,
+				8D7AE8C727DDDB5C00B3C681 /* GoogleService-Info.plist in Resources */,
 				8DD0DB01278611AA00F113AD /* Assets.xcassets in Resources */,
 				8DD0DAFF278611A800F113AD /* Main.storyboard in Resources */,
 			);
