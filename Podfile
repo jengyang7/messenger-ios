@@ -16,6 +16,8 @@ target 'Messenger' do
   pod 'RealmSwift' #cache, mobile database
   pod 'SDWebImage'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn', '~> 5.0.2'
+  pod 'GoogleUtilities', '~> 7.7.0'
   
   
 end

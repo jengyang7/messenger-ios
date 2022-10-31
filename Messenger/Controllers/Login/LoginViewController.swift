@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import JGProgressHUD
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -71,12 +72,27 @@ class LoginViewController: UIViewController {
     
     private let facebookLoginButton:FBLoginButton = {
         let button = FBLoginButton()
+        button.layer.cornerRadius = 12
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         button.permissions = ["email", "public_profile"]
         return button
     }()
     
+    private let googleLoginButton = GIDSignInButton()
+    
+    private var loginObserver: NSObjectProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            self?.navigationController?.dismiss(animated: true, completion: nil)
+        })
+        
+        GIDSignIn.sharedInstance().presentingViewController = self
         
         // Do any additional setup after loading the view.
         title = "Log In"
@@ -101,6 +117,13 @@ class LoginViewController: UIViewController {
         scrollView.isUserInteractionEnabled = true
         
         scrollView.addSubview(facebookLoginButton)
+        scrollView.addSubview(googleLoginButton)
+    }
+    
+    deinit {
+        if let observer = loginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -113,8 +136,8 @@ class LoginViewController: UIViewController {
         loginButton.frame = CGRect(x: 30, y: passwordField.bottom + 20, width: scrollView.width - 60, height: 52)
         
         facebookLoginButton.frame = CGRect(x: 30, y: loginButton.bottom + 20, width: scrollView.width - 60, height: 52)
-        facebookLoginButton.center = scrollView.center
-        facebookLoginButton.frame.origin.y = loginButton.bottom + 20
+        googleLoginButton.frame = CGRect(x: 30, y: facebookLoginButton.bottom + 20, width: scrollView.width - 60, height: 52)
+        
     }
     
     
@@ -190,7 +213,7 @@ extension LoginViewController: LoginButtonDelegate {
         print(token)
         
         let facebookRequest =  GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
-    
+        
         
         print("facebookRequest: ", facebookRequest)
         
