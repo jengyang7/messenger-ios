@@ -187,13 +187,17 @@ class RegisterViewController: UIViewController {
                 return
             }
             
+            print("exists:", exists)
+            
             DispatchQueue.main.async {
                 strongSelf.spinner.dismiss()
             }
             
             guard !exists else {
                 // user already exists
+                print("1")
                 strongSelf.alertUserRegisterError(message: "Looks like a user account for that email address already exists.")
+                
                 return
             }
             
@@ -203,9 +207,6 @@ class RegisterViewController: UIViewController {
                     print("Error creating user")
                     return
                 }
-                
-    //            let user = result.user
-    //            print("Created User: \(user)")
                 
                 DatabaseManager.shared.insert(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)

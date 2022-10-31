@@ -15,6 +15,8 @@ target 'Messenger' do
   pod 'JGProgressHUD'
   pod 'RealmSwift' #cache, mobile database
   pod 'SDWebImage'
+  pod 'FBSDKLoginKit'
+  
   
 end
 
