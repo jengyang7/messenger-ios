@@ -29,15 +29,13 @@ extension DatabaseManager{
         var safeEmail = email.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         
-        database.child(safeEmail).observeSingleEvent(of: .value) { snapshot in
-            guard snapshot.value as? String != nil else {
+        database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                completion(true)
+            } else {
                 completion(false)
-                return
             }
-            
-            
-            completion(true)
-        }
+        })
     }
     
     /// Inserts new user to database
