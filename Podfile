@@ -7,18 +7,24 @@ target 'Messenger' do
 
   # Pods for Messenger
   
-  pod 'R.swift'
+  # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  
+  # Facebook
+  pod 'FBSDKLoginKit'
+  
+  # Google
+  pod 'GoogleSignIn', '~> 5.0.2'
+  pod 'GoogleUtilities', '~> 7.7.0'
+  
+  pod 'R.swift'
   pod 'MessageKit'
   pod 'JGProgressHUD'
   pod 'RealmSwift' #cache, mobile database
   pod 'SDWebImage'
-  pod 'FBSDKLoginKit'
-  pod 'GoogleSignIn', '~> 5.0.2'
-  pod 'GoogleUtilities', '~> 7.7.0'
-  
   
 end
 
