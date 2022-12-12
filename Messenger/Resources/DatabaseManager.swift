@@ -18,6 +18,12 @@ final class DatabaseManager {
     //        database.child("foo").setValue(["something": true])
     //    }
     
+    static func safeEmail(emailAddress: String) -> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
+    
 }
 
 // MARK: - Account Manager
@@ -69,7 +75,7 @@ struct ChatAppUser {
     }
     
     var profilePictureFileName: String {
-        // jengyang-gmail-com-com_profile_picture.png
+        // jengyang-gmail-com_profile_picture.png
         return "\(safeEmail)_profile_picture.png"
     }
 }

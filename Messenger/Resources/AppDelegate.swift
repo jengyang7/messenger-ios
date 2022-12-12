@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         
+        
+        let systemFontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)]
+        UITabBarItem.appearance().setTitleTextAttributes(systemFontAttributes, for: .normal)
+        
         FirebaseApp.configure()
         
         ApplicationDelegate.shared.application(
@@ -67,6 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         
+        UserDefaults.standard.set(email, forKey: "email")
+        
         DatabaseManager.shared.userExists(with: email, completion:  { exist in
             if !exist{
                 let chatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
@@ -94,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                     print("Storage manager error: \(error)")
                                 }
                             })
-                        }).resume()  
+                        }).resume()
                     }
                 })
             }

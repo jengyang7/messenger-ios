@@ -89,7 +89,8 @@ class LoginViewController: UIViewController {
             guard let strongSelf = self else {
                 return
             }
-            self?.navigationController?.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
         
         GIDSignIn.sharedInstance().presentingViewController = self
@@ -150,7 +151,6 @@ class LoginViewController: UIViewController {
         spinner.show(in: view)
         
         // Firebase Log in
-        
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else {
                 return
@@ -165,7 +165,12 @@ class LoginViewController: UIViewController {
                 return
             }
             let user = result.user
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            
             print("Logged with user: \(user)")
+            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+
             self?.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -245,6 +250,8 @@ extension LoginViewController: LoginButtonDelegate {
              let lastName = nameComponents[1]
              */
             
+            UserDefaults.standard.set(email, forKey: "email")
+            
             DatabaseManager.shared.userExists(with: email, completion: { exists in
                 if !exists {
                     let chatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
@@ -298,6 +305,7 @@ extension LoginViewController: LoginButtonDelegate {
                     return
                 }
                 print("Successfully logged user in")
+                NotificationCenter.default.post(name: .newLoginNotification, object: nil)
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             })
         })

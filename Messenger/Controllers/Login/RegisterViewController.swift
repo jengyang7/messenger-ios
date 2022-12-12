@@ -180,6 +180,7 @@ class RegisterViewController: UIViewController {
         spinner.show(in: view)
 
         // Firebase Register
+        UserDefaults.standard.set(email, forKey: "email")
         
         DatabaseManager.shared.userExists(with: email) { [weak self] exists in
             guard let strongSelf = self else {
