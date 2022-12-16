@@ -16,7 +16,8 @@ class ProfileViewController: UIViewController {
     
     let data = ["Log Out"]
     private var newLoginObserver: NSObjectProtocol?
-
+    private var newRegisterObserver: NSObjectProtocol?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,29 @@ class ProfileViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         refreshProfilePicture()
         
-        newLoginObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
+        newRegisterObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.refreshProfilePicture()
+            self?.refreshProfilePicture()
         })
+        
+        newLoginObserver = NotificationCenter.default.addObserver(forName: .newRegisterNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            self?.refreshProfilePicture()
+        })
+    }
+    
+    deinit {
+        if let observer = newRegisterObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
+        if let observer = newLoginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     func refreshProfilePicture() {
@@ -48,7 +66,7 @@ class ProfileViewController: UIViewController {
         let path = "image/" + filename
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 300))
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = .link
         
         let imageView = UIImageView(frame: CGRect(x: (headerView.width-150) / 2, y: 75, width: 150, height: 150))
         imageView.contentMode = .scaleAspectFill
@@ -57,7 +75,7 @@ class ProfileViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.width / 2
         headerView.addSubview(imageView)
-
+        
         StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
             print("path: ", path)
             switch result{
@@ -78,6 +96,7 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 imageView.image = image
+                self.tableView.reloadData()
             }
         }).resume()
     }

@@ -12,7 +12,7 @@ import JGProgressHUD
 class RegisterViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
-
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
@@ -130,10 +130,10 @@ class RegisterViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         scrollView.isUserInteractionEnabled = true
-
+        
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
-//        gesture.numberOfTouchesRequired = 1
+        //        gesture.numberOfTouchesRequired = 1
         imageView.addGestureRecognizer(gesture)
     }
     
@@ -173,12 +173,12 @@ class RegisterViewController: UIViewController {
                 !email.isEmpty,
               !password.isEmpty,
               password.count >= 6 else {
-                  alertUserRegisterError()
-                  return
-              }
+            alertUserRegisterError()
+            return
+        }
         
         spinner.show(in: view)
-
+        
         // Firebase Register
         UserDefaults.standard.set(email, forKey: "email")
         
@@ -218,6 +218,7 @@ class RegisterViewController: UIViewController {
                             switch result {
                             case .success(let downloadUrl):
                                 UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                NotificationCenter.default.post(name: .newRegisterNotification, object: nil)
                                 print(downloadUrl)
                             case .failure(let error):
                                 print("Storage manager error: \(error)")
@@ -225,10 +226,11 @@ class RegisterViewController: UIViewController {
                         })
                     }
                 })
+//                NotificationCenter.default.post(name: .newLoginNotification, object: nil)
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             }
         }
-      
+        
     }
     
     func alertUserRegisterError(message: String = "Please enter all information to create a new account.") {
@@ -304,7 +306,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-//        print(info)
+        //        print(info)
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] else {
             return
         }
