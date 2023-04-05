@@ -277,6 +277,7 @@ extension LoginViewController: LoginButtonDelegate {
                                     switch result {
                                     case .success(let downloadUrl):
                                         UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                        NotificationCenter.default.post(name: .newLoginNotification, object: nil)
                                         print(downloadUrl)
                                     case .failure(let error):
                                         print("Storage manager error: \(error)")

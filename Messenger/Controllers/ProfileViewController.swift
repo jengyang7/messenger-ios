@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
+import JGProgressHUD
 
 class ProfileViewController: UIViewController {
     
@@ -17,13 +18,15 @@ class ProfileViewController: UIViewController {
     let data = ["Log Out"]
     private var newLoginObserver: NSObjectProtocol?
     private var newRegisterObserver: NSObjectProtocol?
-    
+    private let spinner = JGProgressHUD(style: .dark)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         refreshProfilePicture()
         
         newRegisterObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
@@ -52,7 +55,10 @@ class ProfileViewController: UIViewController {
     }
     
     func refreshProfilePicture() {
+        spinner.show(in: view)
         tableView.tableHeaderView = createTableHeader()
+        tableView.tableHeaderView?.layer.cornerRadius = view.frame.width / 8
+        tableView.tableHeaderView?.layer.masksToBounds = true
     }
     
     func createTableHeader() -> UIView? {
@@ -97,6 +103,7 @@ class ProfileViewController: UIViewController {
                 let image = UIImage(data: data)
                 imageView.image = image
                 self.tableView.reloadData()
+                self.spinner.dismiss()
             }
         }).resume()
     }
