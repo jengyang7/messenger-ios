@@ -164,7 +164,7 @@ class ChatViewController: MessagesViewController {
                     return
                 }
                 self?.messages = messages
-                print("messages: \(messages)")
+                print("1 messages: \(messages)")
                 
                 DispatchQueue.main.async {
                     self?.messagesCollectionView.reloadDataAndKeepOffset() // scroll to up, if new messages come in will not scroll down, bad experience
@@ -247,16 +247,20 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension ChatViewController: InputBarAccessoryViewDelegate{
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        print("self.selfSender:", self.selfSender)
+        print("otherUserEmail:", otherUserEmail)
         guard !text.replacingOccurrences(of: " ", with: "").isEmpty,
               let selfSender = self.selfSender,
               let messageId = createMessageID() else {
             return
         }
+        print("messageId:", messageId)
+
         
         print("Sending: \(text)")
         
         let message = Message(sender: selfSender, messageId: messageId, sentDate: Date(), kind: .text(text))
-        
+        print("message:", message)
         // Send Message
         if isNewConversation {
             // create convo in database
