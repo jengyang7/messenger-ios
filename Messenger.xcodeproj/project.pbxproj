@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D2E8D5B29EBEFBB004867E8 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2E8D5A29EBEFBA004867E8 /* LocationPickerViewController.swift */; };
 		8D41609E28071A4A0048DEC6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D41609D28071A4A0048DEC6 /* ChatViewController.swift */; };
 		8D78B90629E839D1004E7899 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78B90529E839D1004E7899 /* NewConversationCell.swift */; };
 		8D7AE8C727DDDB5C00B3C681 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		23FD4396717C7D201E72FEC4 /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		370BBDE006C78C7C27A0B48C /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
+		8D2E8D5A29EBEFBA004867E8 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		8D41609D28071A4A0048DEC6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8D78B90529E839D1004E7899 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				8DD0DB1927874BF600F113AD /* NewConversationViewController.swift */,
 				8DD0DB1B27874C0C00F113AD /* ProfileViewController.swift */,
 				8D41609D28071A4A0048DEC6 /* ChatViewController.swift */,
+				8D2E8D5A29EBEFBA004867E8 /* LocationPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				8DD0DB122787469600F113AD /* LoginViewController.swift in Sources */,
 				8DD0DB14278746A200F113AD /* RegisterViewController.swift in Sources */,
 				8DD0DB1A27874BF600F113AD /* NewConversationViewController.swift in Sources */,
+				8D2E8D5B29EBEFBB004867E8 /* LocationPickerViewController.swift in Sources */,
 				8D85DB0529100EB700160194 /* StorageManager.swift in Sources */,
 				8DD0DAFC278611A800F113AD /* ConversationViewController.swift in Sources */,
 				8DD0DB1827874BDA00F113AD /* VideoPlayerViewController.swift in Sources */,

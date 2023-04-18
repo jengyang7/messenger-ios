@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import MessageKit
+import CoreLocation
 
 final class DatabaseManager {
     
@@ -49,10 +50,10 @@ extension DatabaseManager{
         
         database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? [String: Any] != nil else {
-                completion(true)
+                completion(false)
                 return
             }
-            completion(false)
+            completion(true)
         })
     }
     
@@ -425,7 +426,18 @@ extension DatabaseManager {
                     }
                     let media = Media(url: imageUrl, image: nil, placeholderImage: placeHolder, size: CGSize(width: 300, height: 300))
                     kind = .photo(media)
-                } else {
+                }
+                else if type == "location" {
+                    let locationComponents = content.components(separatedBy: ",")
+                    guard let longitude = Double(locationComponents[0]), let latitude = Double(locationComponents[1]) else {
+                        return nil
+                    }
+                    
+                    print("rendering location: long=\(longitude) | lat=\(latitude)")
+                    let location = Location(location: CLLocation(latitude: latitude, longitude: longitude), size: CGSize(width: 300, height: 300))
+                    kind = .location(location)
+                }
+                else {
                     kind = .text(content)
                 }
                 
@@ -482,7 +494,9 @@ extension DatabaseManager {
                 break
             case .video(_):
                 break
-            case .location(_):
+            case .location(let locationData):
+                let location = locationData.location
+                message = "\(location.coordinate.longitude),\(location.coordinate.latitude)"
                 break
             case .emoji(_):
                 break
