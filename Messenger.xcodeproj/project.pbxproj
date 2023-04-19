@@ -25,9 +25,12 @@
 		8DD0DB122787469600F113AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB112787469600F113AD /* LoginViewController.swift */; };
 		8DD0DB14278746A200F113AD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB13278746A200F113AD /* RegisterViewController.swift */; };
 		8DD0DB1627874BCD00F113AD /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB1527874BCD00F113AD /* PhotoViewerViewController.swift */; };
-		8DD0DB1827874BDA00F113AD /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB1727874BDA00F113AD /* VideoPlayerViewController.swift */; };
 		8DD0DB1A27874BF600F113AD /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB1927874BF600F113AD /* NewConversationViewController.swift */; };
 		8DD0DB1C27874C0C00F113AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0DB1B27874C0C00F113AD /* ProfileViewController.swift */; };
+		8DE4C1EE29EFC20B006F3BD2 /* ConversationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4C1ED29EFC20B006F3BD2 /* ConversationModels.swift */; };
+		8DE4C1F029EFC2DA006F3BD2 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4C1EF29EFC2DA006F3BD2 /* ChatModels.swift */; };
+		8DE4C1F229EFC330006F3BD2 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4C1F129EFC330006F3BD2 /* SearchResult.swift */; };
+		8DE4C1F429EFC4B3006F3BD2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4C1F329EFC4B3006F3BD2 /* ProfileViewModel.swift */; };
 		FDA3BF803164EE54615869C4 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FD4396717C7D201E72FEC4 /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,9 +57,12 @@
 		8DD0DB112787469600F113AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8DD0DB13278746A200F113AD /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8DD0DB1527874BCD00F113AD /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
-		8DD0DB1727874BDA00F113AD /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		8DD0DB1927874BF600F113AD /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		8DD0DB1B27874C0C00F113AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8DE4C1ED29EFC20B006F3BD2 /* ConversationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationModels.swift; path = Messenger/Controllers/ConversationModels.swift; sourceTree = SOURCE_ROOT; };
+		8DE4C1EF29EFC2DA006F3BD2 /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatModels.swift; path = Messenger/Controllers/ChatModels.swift; sourceTree = SOURCE_ROOT; };
+		8DE4C1F129EFC330006F3BD2 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResult.swift; path = Messenger/Controllers/SearchResult.swift; sourceTree = SOURCE_ROOT; };
+		8DE4C1F329EFC4B3006F3BD2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Messenger/Controllers/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F1A216CD8593F7CBFCEF3F01 /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +134,10 @@
 		8DD0DB0D2787457500F113AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8DE4C1ED29EFC20B006F3BD2 /* ConversationModels.swift */,
+				8DE4C1EF29EFC2DA006F3BD2 /* ChatModels.swift */,
+				8DE4C1F129EFC330006F3BD2 /* SearchResult.swift */,
+				8DE4C1F329EFC4B3006F3BD2 /* ProfileViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -138,7 +148,6 @@
 				8DD0DAFB278611A800F113AD /* ConversationViewController.swift */,
 				8DD0DB1D27874E6200F113AD /* Login */,
 				8DD0DB1527874BCD00F113AD /* PhotoViewerViewController.swift */,
-				8DD0DB1727874BDA00F113AD /* VideoPlayerViewController.swift */,
 				8DD0DB1927874BF600F113AD /* NewConversationViewController.swift */,
 				8DD0DB1B27874C0C00F113AD /* ProfileViewController.swift */,
 				8D41609D28071A4A0048DEC6 /* ChatViewController.swift */,
@@ -364,18 +373,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE4C1EE29EFC20B006F3BD2 /* ConversationModels.swift in Sources */,
+				8DE4C1F029EFC2DA006F3BD2 /* ChatModels.swift in Sources */,
+				8DE4C1F229EFC330006F3BD2 /* SearchResult.swift in Sources */,
 				8DD0DB122787469600F113AD /* LoginViewController.swift in Sources */,
 				8DD0DB14278746A200F113AD /* RegisterViewController.swift in Sources */,
 				8DD0DB1A27874BF600F113AD /* NewConversationViewController.swift in Sources */,
 				8D2E8D5B29EBEFBB004867E8 /* LocationPickerViewController.swift in Sources */,
 				8D85DB0529100EB700160194 /* StorageManager.swift in Sources */,
 				8DD0DAFC278611A800F113AD /* ConversationViewController.swift in Sources */,
-				8DD0DB1827874BDA00F113AD /* VideoPlayerViewController.swift in Sources */,
 				8DD0DAF8278611A800F113AD /* AppDelegate.swift in Sources */,
 				8DD0DB1C27874C0C00F113AD /* ProfileViewController.swift in Sources */,
 				8D7FD7D727C2A9C6001C5647 /* R.generated.swift in Sources */,
 				8D78B90629E839D1004E7899 /* NewConversationCell.swift in Sources */,
 				8D7AE8C927E109C100B3C681 /* DatabaseManager.swift in Sources */,
+				8DE4C1F429EFC4B3006F3BD2 /* ProfileViewModel.swift in Sources */,
 				8D41609E28071A4A0048DEC6 /* ChatViewController.swift in Sources */,
 				8DD0DAFA278611A800F113AD /* SceneDelegate.swift in Sources */,
 				8D7FD7D927C2ABE5001C5647 /* Extensions.swift in Sources */,

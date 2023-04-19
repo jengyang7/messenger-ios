@@ -9,20 +9,8 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-struct Conversation{
-    let id: String
-    let name: String
-    let otherUserEmail: String
-    let latestMessage: LatestMessage
-}
-
-struct LatestMessage {
-    let date: String
-    let text: String
-    let isRead: Bool
-}
-
-class ConversationViewController: UIViewController {
+/// Controller that shows list of conversations
+final class ConversationViewController: UIViewController { // final: no other class can inherit from
     
     private let spinner = JGProgressHUD(style: .dark)
     private var conversations = [Conversation]()
@@ -93,6 +81,8 @@ class ConversationViewController: UIViewController {
                 }
                 
             case .failure(let error):
+                self?.tableView.isHidden = true
+                self?.noConversationsLabel.isHidden = false
                 print("failed to get convos: \(error)")
             }
         })
@@ -168,7 +158,7 @@ class ConversationViewController: UIViewController {
     }
     
     private func validateAuth(){
-        print("user:", FirebaseAuth.Auth.auth().currentUser)
+        print("user:", FirebaseAuth.Auth.auth().currentUser?.email)
         if FirebaseAuth.Auth.auth().currentUser == nil {
             let vc = LoginViewController()
             let nav = UINavigationController(rootViewController: vc)
@@ -224,10 +214,13 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
             let conversationId = conversations[indexPath.row].id
             tableView.beginUpdates()
             
-            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { [weak self] success in
-                if success {
-                    self?.conversations.remove(at: indexPath.row) // only 1 section
-                    tableView.deleteRows(at: [indexPath], with: .left)
+            self.conversations.remove(at: indexPath.row) // only 1 section
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            DatabaseManager.shared.deleteConversation(conversationId: conversationId, completion: { success in
+                if !success {
+                    // add model and row back and show error
+                    print("Failed to delete message")
                 }
             })
             tableView.endUpdates()

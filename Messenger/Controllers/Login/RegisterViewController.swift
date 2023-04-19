@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
     
@@ -223,7 +223,7 @@ class RegisterViewController: UIViewController {
                             switch result {
                             case .success(let downloadUrl):
                                 UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
-                                NotificationCenter.default.post(name: .newRegisterNotification, object: nil)
+//                                NotificationCenter.default.post(name: .newRegisterNotification, object: nil)
                                 print(downloadUrl)
                             case .failure(let error):
                                 print("Storage manager error: \(error)")

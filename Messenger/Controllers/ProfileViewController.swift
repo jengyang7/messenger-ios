@@ -12,17 +12,7 @@ import GoogleSignIn
 import JGProgressHUD
 import SDWebImage
 
-enum ProfileViewModelType {
-    case info, logout
-}
-
-struct ProfileViewModel {
-    let viewModelType: ProfileViewModelType
-    let title: String
-    let handler: (() -> Void)?
-}
-
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
@@ -59,7 +49,7 @@ class ProfileViewController: UIViewController {
                 
                 do{
                     try FirebaseAuth.Auth.auth().signOut()
-                    
+//                    self?.data.removeAll()
                     let vc = LoginViewController()
                     let nav = UINavigationController(rootViewController: vc)
                     nav.modalPresentationStyle = .fullScreen
@@ -72,42 +62,42 @@ class ProfileViewController: UIViewController {
             strongSelf.present(actionSheet, animated: true)
         }))
 
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.tableHeaderView = createTableHeader()
         
-        refreshProfilePicture()
+//        refreshProfilePicture()
         
-        newRegisterObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
-            guard let strongSelf = self else {
-                return
-            }
-            self?.refreshProfilePicture()
-        })
-
-        newLoginObserver = NotificationCenter.default.addObserver(forName: .newRegisterNotification, object: nil, queue: .main, using: { [weak self] _ in
-            guard let strongSelf = self else {
-                return
-            }
-            self?.refreshProfilePicture()
-        })
+//        newRegisterObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
+//            guard let strongSelf = self else {
+//                return
+//            }
+//            self?.refreshProfilePicture()
+//        })
+//
+//        newLoginObserver = NotificationCenter.default.addObserver(forName: .newRegisterNotification, object: nil, queue: .main, using: { [weak self] _ in
+//            guard let strongSelf = self else {
+//                return
+//            }
+//            self?.refreshProfilePicture()
+//        })
     }
     
-    deinit {
-        if let observer = newRegisterObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-
-        if let observer = newLoginObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
+//    deinit {
+//        if let observer = newRegisterObserver {
+//            NotificationCenter.default.removeObserver(observer)
+//        }
+//
+//        if let observer = newLoginObserver {
+//            NotificationCenter.default.removeObserver(observer)
+//        }
+//    }
     
     func refreshProfilePicture() {
 //        spinner.show(in: view)
-        tableView.tableHeaderView = createTableHeader()
-        tableView.tableHeaderView?.layer.cornerRadius = view.frame.width / 8
-        tableView.tableHeaderView?.layer.masksToBounds = true
+//        tableView.tableHeaderView?.layer.cornerRadius = view.frame.width / 8
+//        tableView.tableHeaderView?.layer.masksToBounds = true
         tableView.reloadData()
     }
     
@@ -172,11 +162,11 @@ class ProfileTableViewCell: UITableViewCell {
         self.textLabel?.text = viewModel.title
         switch viewModel.viewModelType {
             case .info:
-                self.textLabel?.textAlignment = .left
-                self.selectionStyle = .none
+                textLabel?.textAlignment = .left
+                selectionStyle = .none
             case .logout:
-                self.textLabel?.textColor = .red
-                self.textLabel?.textAlignment = .center
+                 textLabel?.textColor = .red
+                 textLabel?.textAlignment = .center
         }
     }
 }

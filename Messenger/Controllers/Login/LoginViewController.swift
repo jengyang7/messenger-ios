@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         let field = UITextField()
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
-        field.returnKeyType = .continue
+        field.returnKeyType = .done
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController {
             guard let strongSelf = self else {
                 return
             }
-            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+//            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
         
@@ -143,6 +143,7 @@ class LoginViewController: UIViewController {
     
     
     @objc private func loginButtonTapped(){
+        emailField.resignFirstResponder()
         guard let email = emailField.text, let password = passwordField.text, !email.isEmpty, !password.isEmpty, password.count >= 6 else {
             alertUserLoginError()
             return
@@ -184,7 +185,7 @@ class LoginViewController: UIViewController {
             UserDefaults.standard.set(email, forKey: "email")
             
             print("Logged with user: \(user)")
-            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+//            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
 
             self?.navigationController?.dismiss(animated: true, completion: nil)
         }
@@ -211,7 +212,7 @@ extension LoginViewController: UITextFieldDelegate {
         if textField == emailField {
             passwordField.becomeFirstResponder()
         }
-        else if textField === passwordField {
+        else if textField == passwordField {
             loginButtonTapped()
         }
         
@@ -293,7 +294,7 @@ extension LoginViewController: LoginButtonDelegate {
                                     switch result {
                                     case .success(let downloadUrl):
                                         UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
-                                        NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+//                                        NotificationCenter.default.post(name: .newLoginNotification, object: nil)
                                         print(downloadUrl)
                                     case .failure(let error):
                                         print("Storage manager error: \(error)")
@@ -322,7 +323,7 @@ extension LoginViewController: LoginButtonDelegate {
                     return
                 }
                 print("Successfully logged user in")
-                NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+//                NotificationCenter.default.post(name: .newLoginNotification, object: nil)
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             })
         })
