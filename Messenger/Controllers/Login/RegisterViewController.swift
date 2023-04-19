@@ -223,15 +223,16 @@ final class RegisterViewController: UIViewController {
                             switch result {
                             case .success(let downloadUrl):
                                 UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
-//                                NotificationCenter.default.post(name: .newRegisterNotification, object: nil)
                                 print(downloadUrl)
+                                NotificationCenter.default.post(name: .newRegisterNotification, object: nil)
+//                                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
                             case .failure(let error):
                                 print("Storage manager error: \(error)")
                             }
                         })
                     }
                 })
-//                NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+                NotificationCenter.default.post(name: .didLogInNotification, object: nil)
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             }
         }

@@ -19,12 +19,62 @@ final class ProfileViewController: UIViewController {
     var data = [ProfileViewModel]()
     private var newLoginObserver: NSObjectProtocol?
     private var newRegisterObserver: NSObjectProtocol?
-//    private let spinner = JGProgressHUD(style: .dark)
+    private let spinner = JGProgressHUD(style: .dark)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
+        
+        refreshProfile()
+                
+        newLoginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            print("log in observed")
+            guard let view = self?.view else {
+                return
+            }
+            self?.spinner.show(in: view)
+            self?.refreshProfile()
+            self?.spinner.dismiss()
+
+            })
+
+        
+        newRegisterObserver = NotificationCenter.default.addObserver(forName: .newRegisterNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            print("register observed")
+//            self?.refreshProfile()
+            guard let view = self?.view else {
+                return
+            }
+            self?.spinner.show(in: view)
+
+            self?.tableView.tableHeaderView = self?.createTableHeader()
+            self?.spinner.dismiss()
+
+            })
+
+        
+    }
+    
+    deinit {
+        if let observer = newRegisterObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+
+        if let observer = newLoginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
+    func refreshProfile() {
+        print("Name profile 1:", UserDefaults.standard.value(forKey: "name") ?? "")
+        print("Email profile 1:", UserDefaults.standard.value(forKey: "email") ?? "")
         data.append(ProfileViewModel(viewModelType: .info, title: "Name: \(UserDefaults.standard.value(forKey: "name") as? String ?? "No Name")", handler: nil))
         data.append(ProfileViewModel(viewModelType: .info, title: "Email: \(UserDefaults.standard.value(forKey: "email") as? String ?? "No Email")", handler: nil))
         data.append(ProfileViewModel(viewModelType: .logout, title: "Log Out", handler: { [weak self] in
@@ -49,7 +99,10 @@ final class ProfileViewController: UIViewController {
                 
                 do{
                     try FirebaseAuth.Auth.auth().signOut()
-//                    self?.data.removeAll()
+                    self?.data.removeAll()
+                    print("Name profilee:", UserDefaults.standard.value(forKey: "name") ?? "")
+                    print("Email profilee:", UserDefaults.standard.value(forKey: "email") ?? "")
+                    print("dataa:", self?.data ?? [])
                     let vc = LoginViewController()
                     let nav = UINavigationController(rootViewController: vc)
                     nav.modalPresentationStyle = .fullScreen
@@ -61,47 +114,20 @@ final class ProfileViewController: UIViewController {
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             strongSelf.present(actionSheet, animated: true)
         }))
+        print("dataaa:", self.data ?? [])
+
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeader()
-        
-//        refreshProfilePicture()
-        
-//        newRegisterObserver = NotificationCenter.default.addObserver(forName: .newLoginNotification, object: nil, queue: .main, using: { [weak self] _ in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//            self?.refreshProfilePicture()
-//        })
-//
-//        newLoginObserver = NotificationCenter.default.addObserver(forName: .newRegisterNotification, object: nil, queue: .main, using: { [weak self] _ in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//            self?.refreshProfilePicture()
-//        })
-    }
-    
-//    deinit {
-//        if let observer = newRegisterObserver {
-//            NotificationCenter.default.removeObserver(observer)
-//        }
-//
-//        if let observer = newLoginObserver {
-//            NotificationCenter.default.removeObserver(observer)
-//        }
-//    }
-    
-    func refreshProfilePicture() {
-//        spinner.show(in: view)
-//        tableView.tableHeaderView?.layer.cornerRadius = view.frame.width / 8
-//        tableView.tableHeaderView?.layer.masksToBounds = true
         tableView.reloadData()
+        
     }
     
     func createTableHeader() -> UIView? {
+        spinner.show(in: view)
+
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return nil
         }
@@ -130,6 +156,7 @@ final class ProfileViewController: UIViewController {
                 print("Failed to download url: \(error)")
             }
         })
+        self.spinner.dismiss()
         return headerView
     }
 }
@@ -162,6 +189,7 @@ class ProfileTableViewCell: UITableViewCell {
         self.textLabel?.text = viewModel.title
         switch viewModel.viewModelType {
             case .info:
+                textLabel?.textColor = UIColor.label
                 textLabel?.textAlignment = .left
                 selectionStyle = .none
             case .logout:

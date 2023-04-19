@@ -171,23 +171,38 @@ class LoginViewController: UIViewController {
             DatabaseManager.shared.getDataFor(path: safeEmail, completion: { result in
                 switch result {
                 case .success(let data):
+
                     guard let userData = data as? [String: Any],
                     let firstName = userData["first_name"] as? String,
                     let lastName = userData["last_name"] as? String else {
                         return
                     }
+                    print("data first name:", firstName)
+                    print("data last name:", lastName)
+
                     UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                    UserDefaults.standard.set(email, forKey: "email")
+                    
+                    print("Name 222:", UserDefaults.standard.value(forKey: "name") ?? "")
+                    print("Email 222:", UserDefaults.standard.value(forKey: "email") ?? "")
+                    NotificationCenter.default.post(name: .didLogInNotification, object: nil)
+                    
+                    self?.navigationController?.dismiss(animated: true, completion: nil)
+
+
                 case .failure(let error):
                     print("Failed to read data with error \(error)")
                 }
             })
             
-            UserDefaults.standard.set(email, forKey: "email")
-            
-            print("Logged with user: \(user)")
-//            NotificationCenter.default.post(name: .newLoginNotification, object: nil)
+//            UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
 
-            self?.navigationController?.dismiss(animated: true, completion: nil)
+            
+//            print("Logged with user: \(user)")
+//            print("Name 111:", UserDefaults.standard.value(forKey: "name") ?? "")
+//            print("Email 111:", UserDefaults.standard.value(forKey: "email") ?? "")
+
+
         }
     }
     
