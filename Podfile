@@ -28,6 +28,8 @@ target 'Messenger' do
   pod 'RealmSwift' #cache, mobile database
   pod 'SDWebImage'
   
+  pod 'Alamofire'
+  
 end
 
 post_install do |installer|

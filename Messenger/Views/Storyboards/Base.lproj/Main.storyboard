@@ -25,6 +25,22 @@
             </objects>
             <point key="canvasLocation" x="-2339" y="1422"/>
         </scene>
+        <!--AI Chatbot-->
+        <scene sceneID="B1Y-0p-ci2">
+            <objects>
+                <viewController id="bGm-2b-zIv" customClass="AIViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="toJ-cu-dlE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cNj-uo-QRR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="AI Chatbot" id="kTN-Xb-mGv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ey5-Ti-ewp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1620" y="1422"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="7MA-QL-roD">
             <objects>
@@ -54,13 +70,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBT-tM-Om4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1339" y="1422"/>
+            <point key="canvasLocation" x="-894" y="1422"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1RZ-CU-7ek">
             <objects>
                 <navigationController id="s25-tu-p7W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="ZQo-NO-Ify"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="ZQo-NO-Ify">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="wVr-v7-cNa">
                         <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,7 +89,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v9m-lR-Hb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1339" y="701"/>
+            <point key="canvasLocation" x="-894" y="700"/>
+        </scene>
+        <!--AI-->
+        <scene sceneID="y0I-ni-nKR">
+            <objects>
+                <navigationController id="drc-eP-3kC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AI" image="brain.head.profile" catalog="system" id="Coz-lh-LQB">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="6"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="qjj-MS-ZOG">
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bGm-2b-zIv" kind="relationship" relationship="rootViewController" id="siQ-XS-9ju"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FKc-p8-iDQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1620" y="700"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SUK-5H-Hlf">
@@ -84,18 +121,21 @@
                     </tabBar>
                     <connections>
                         <segue destination="yhw-mE-cJU" kind="relationship" relationship="viewControllers" id="pq1-lt-Oo6"/>
+                        <segue destination="drc-eP-3kC" kind="relationship" relationship="viewControllers" id="7iu-ah-Ybm"/>
                         <segue destination="s25-tu-p7W" kind="relationship" relationship="viewControllers" id="Uld-wB-2Jj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ome-iy-5U7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1842" y="-50"/>
+            <point key="canvasLocation" x="-1620" y="-56"/>
         </scene>
         <!--Chats-->
         <scene sceneID="Mhb-Fg-jLO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yhw-mE-cJU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="DHa-3j-3Xd"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="DHa-3j-3Xd">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="gfx-W5-yHZ">
                         <rect key="frame" x="0.0" y="48" width="414" height="96"/>
@@ -112,6 +152,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="brain.head.profile" catalog="system" width="120" height="128"/>
         <image name="message" catalog="system" width="128" height="116"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

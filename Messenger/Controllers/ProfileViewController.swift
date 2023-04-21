@@ -62,15 +62,15 @@ final class ProfileViewController: UIViewController {
         
     }
     
-    deinit {
-        if let observer = newRegisterObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-
-        if let observer = newLoginObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
+//    deinit {
+//        if let observer = newRegisterObserver {
+//            NotificationCenter.default.removeObserver(observer)
+//        }
+//
+//        if let observer = newLoginObserver {
+//            NotificationCenter.default.removeObserver(observer)
+//        }
+//    }
     
     func refreshProfile() {
         print("Name profile 1:", UserDefaults.standard.value(forKey: "name") ?? "")
