@@ -12,7 +12,6 @@
 		8D78B90629E839D1004E7899 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78B90529E839D1004E7899 /* NewConversationCell.swift */; };
 		8D7AE8C727DDDB5C00B3C681 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */; };
 		8D7AE8C927E109C100B3C681 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7AE8C827E109C100B3C681 /* DatabaseManager.swift */; };
-		8D7FD7D727C2A9C6001C5647 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FD7D627C2A9C6001C5647 /* R.generated.swift */; };
 		8D7FD7D927C2ABE5001C5647 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FD7D827C2ABE5001C5647 /* Extensions.swift */; };
 		8D85DB0529100EB700160194 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D85DB0429100EB700160194 /* StorageManager.swift */; };
 		8D8ADF9529DD6F7200459AA1 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8ADF9429DD6F7200459AA1 /* ConversationTableViewCell.swift */; };
@@ -47,7 +46,6 @@
 		8D78B90529E839D1004E7899 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D7AE8C827E109C100B3C681 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		8D7FD7D627C2A9C6001C5647 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		8D7FD7D827C2ABE5001C5647 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8D85DB0429100EB700160194 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		8D8ADF9429DD6F7200459AA1 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				8DD0DB00278611AA00F113AD /* Assets.xcassets */,
 				8D7AE8C627DDDB5C00B3C681 /* GoogleService-Info.plist */,
 				8DD0DB05278611AA00F113AD /* Info.plist */,
-				8D7FD7D627C2A9C6001C5647 /* R.generated.swift */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -237,7 +234,6 @@
 				8DD0DAF1278611A800F113AD /* Frameworks */,
 				8DD0DAF2278611A800F113AD /* Resources */,
 				75746DF4E3ECFAF4A0A7E74A /* [CP] Embed Pods Frameworks */,
-				C324FDE3A5091767C4435F5F /* [CP] Copy Pods Resources */,
 				8D2E8D5F29EE6D6E004867E8 /* ShellScript */,
 			);
 			buildRules = (
@@ -348,24 +344,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
-		C324FDE3A5091767C4435F5F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "
+";
 		};
 		E45F24F67E957D28EF466168 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -410,7 +390,6 @@
 				8DD0DAF8278611A800F113AD /* AppDelegate.swift in Sources */,
 				8DE4C20329F115E3006F3BD2 /* OpenAIService.swift in Sources */,
 				8DD0DB1C27874C0C00F113AD /* ProfileViewController.swift in Sources */,
-				8D7FD7D727C2A9C6001C5647 /* R.generated.swift in Sources */,
 				8D78B90629E839D1004E7899 /* NewConversationCell.swift in Sources */,
 				8D7AE8C927E109C100B3C681 /* DatabaseManager.swift in Sources */,
 				8DE4C1F429EFC4B3006F3BD2 /* ProfileViewModel.swift in Sources */,
@@ -497,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -552,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -572,6 +551,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 56MT6D8AC2;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a photo";
@@ -604,6 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 56MT6D8AC2;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a photo";

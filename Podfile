@@ -19,10 +19,10 @@ target 'Messenger' do
   pod 'FBSDKLoginKit'
   
   # Google
-  pod 'GoogleSignIn', '~> 5.0.2'
-  pod 'GoogleUtilities', '~> 7.7.0'
+  pod 'GoogleSignIn'
+  pod 'GoogleUtilities'
   
-  pod 'R.swift'
+#  pod 'R.swift'
   pod 'MessageKit'
   pod 'JGProgressHUD'
   pod 'RealmSwift' #cache, mobile database

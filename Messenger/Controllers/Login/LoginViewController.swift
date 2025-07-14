@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = R.image.logo()
+        imageView.image = UIImage(named: "logo")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -93,7 +93,8 @@ class LoginViewController: UIViewController {
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
         
-        GIDSignIn.sharedInstance().presentingViewController = self
+        // Configure Google Sign-In button
+        googleLoginButton.addTarget(self, action: #selector(googleSignInTapped), for: .touchUpInside)
         
         // Do any additional setup after loading the view.
         title = "Log In"
@@ -216,6 +217,16 @@ class LoginViewController: UIViewController {
         let vc = RegisterViewController()
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func googleSignInTapped() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            if let error = error {
+                AppDelegate.handleGoogleSignIn(result: .failure(error))
+            } else if let result = result {
+                AppDelegate.handleGoogleSignIn(result: .success(result.user))
+            }
+        }
     }
     
 }
